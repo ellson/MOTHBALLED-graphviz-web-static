@@ -38,13 +38,15 @@ fout.write('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 for page in pageset:
   menuitem = page.split('.')[0]
   if len(menuitem.split('_')) > 1:
-     menuname = '&nbsp;&nbsp;' + menuitem.split('_')[1]
+     menuname = menuitem.split('_')[1]
+     indent = '&nbsp;&nbsp;'
   else:
      menuname = menuitem
+     indent = ''
   if basename == menuitem:
-    fout.write('\t<tr><td bgcolor="#c0ffc0">' + menuname + '</td></tr>\n')
+    fout.write('\t<tr><td bgcolor="#c0ffc0">' + indent + menuname + '</td></tr>\n')
   else:
-    fout.write('\t<tr><td><a href="' + menuitem + '.html">' + menuname + '</a></td></tr>\n')
+    fout.write('\t<tr><td>' + indent + '<a href="' + menuitem + '.html">' + menuname + '</a></td></tr>\n')
 
 fout.write('''\t</table> 
 </td><td valign="top">
