@@ -1,72 +1,12 @@
 <HTML>
 <HEAD>
-<TITLE>Graphviz</TITLE>
+<TITLE>Graphviz custom shapes</TITLE>
 </HEAD>
 
 <body bgcolor="#ffffff" leftmargin=0
 topmargin=0 marginheight=0 marginwidth=0 link="#339999" vlink="#888888">
 
-<!-- title bar -->
-<table border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td valign="top"><a href="http://www.att.com/"><img 
-src="/banners/ATTlogo.gif" width=124 height=107 border=0
-
-alt="AT&T"></a></td>
-<td><a href="/cgi-bin/private/disp_private"><img 
-src="/banners/Main.gif" width=476 height=65
-
-alt="AT&T Labs Research" border=0></a><br>
-<A HREF="http://www.research.att.com/sw/tools/graphviz">
-<img src="/banners/Graphviz.gif" width=476 height=42 alt="Graphviz"
-border=0></A></td>
-</tr>
-</table>
-<!-- /title bar -->
-
-<table border="0" width="600">
-
-<tr>
-
-<!-- navigation -->
-<td valign="top" width="134">
-<a href="/"><img src="/toolbars/nav_home_a.gif" width=134
-
-height=37 border=0 alt="Home"></a><br>
-<a href="/info/"><img src="/toolbars/nav_people_a.gif"
-width=134 height=46 alt="People" border=0></a><br>
-<a href="/info/Projects"><img src="/toolbars/nav_projects_a.gif"
-width=134 height=42 border="0" alt="Projects"></a><br>
-<a href="/areas/"><img src="/toolbars/nav_research_a.gif"
-width=134 height=61 alt="Research Areas" border="0"></a><br>
-<a href="/resources/"><img src="/toolbars/nav_resources_a.gif"
-width=134 height=41 border="0" alt="Resources"></a><br>
-<a href="/search.html"><img src="/toolbars/nav_search_a.gif"
-width=134 height=36 alt="Search" border="0"></a>
-<form action="http://daikon.research.att.com/cgi-bin/search" method="POST">
-<div align="right">
-<img src="/toolbars/nav_quicksearch.gif" width=114 height=20
-
-alt="Quick Search" border="0"><img src="/icons/spacer.gif" width=18 
-height=1 alt="spacer"><br>
-<input type="text" size="10" name="query"><img 
-src="/icons/spacer.gif" width=18 height=1 alt="spacer">
-<input type="hidden" name="collection" value="www">
-</div>
-</form>
-</td>
-<!-- /navigation -->
-
-<td valign="top" align="left">
-
-<!-- user content -->
-
-<P>
-<IMG SRC=/icons/bline.gif ALT="--------------" >
-</center>
-
-
-<h3> Graphviz custom shapes </h3>
+<H3> Graphviz custom shapes </H3>
 
 As alluded to in the
 <A HREF=dotguide.pdf>
@@ -76,18 +16,12 @@ custom shapes in dot (or neato).
 At this point, they either must be in Postscript or image files,
 or you'll need to modify the <A HREF=download.html>source code</A>.
 
-A bad problem is that you won't get these custom shapes in the
-interactive front ends <tt>dotty</tt> or <tt>Grappa</tt>.  That's
-the problem with having high-level shape specifications and no
-corresponding common library to implement them. 
-What we need is to revamp the graphics drivers, maybe using GTK
-or a variant of XML, and update all the
-tools to use the same library (or at least compatible versions).
-At the same time, we would like to add features like changing fonts
-and colors within a text label and text formatting. 
-(And while we're at it, move dot
-to the new spline router now used in neato.)  We have
-working code for parts of all this but haven't finished the job.
+A serious problem is that you can't make custom shapes that work
+across all the drivers and the interactive front ends <tt>dotty</tt>
+or <tt>Grappa</tt>.   At least SVG has interactive renderers, 
+and Postscript can be translated to PDF which also has some
+interactive features.  Improving the architecture of the graphics
+drivers is an ongoing project of ours.
 
 <h4> <A NAME=ext_image>External image files</A> </h4>
 If using SVG (<TT>-Tsvg</TT>), PostScript (<TT>-Tps</TT>,<TT>-Tps2</TT>) 
@@ -273,40 +207,5 @@ The rest is up to you, but contact us first just in case.
 gv1.6 beta</A> has a compile-time PNG replacement for the GIF driver.)
 <P>
 <center>
-<!-- /user content -->
-
-</td>
-</tr>
-<tr>
-<td></td>
-<td align="center">
-<!-- bottom navigation-->
-<br><br><br>
-<font face="arial,helvetica" size="-1">
-<a href="/">home</a> | 
-<a href="/info/">people</a> |
-<a href="/info/Projects">projects</a> |
-<a href="/areas/">research areas</a> |
-<a href="/resources/">resources</a> |
-<a href="/search.html">search</a> |
-<a href=/~north/graphviz>graphviz</A>
-</font>
-<!-- /bottom navigation-->
-</td>
-</tr>
-</table>
-
-<p>
-<a href="/maps/CopyrightNotice.map"><img ismap
-src="/footers/CopyrightNotice.gif" width=484 height=73 border="0" 
-alt="Copyright and Privacy Notice"></a>
-</p>
-
-</body>
-</html>
-
-<ADDRESS>
-Last Update: Thu Oct 19 13:39:01 EDT 2000
-</ADDRESS>
 </BODY>
 </HTML>
