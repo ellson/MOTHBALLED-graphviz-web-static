@@ -27,7 +27,7 @@ fout.write('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <img src="doc.png" alt="">
 </td><td>
 <!-- header -->
-<h2>GraphViz - Graph Drawing Tools</h1>
+<h2>GraphViz - Graph Drawing Tools</h2>
 <p>
 <h1>''' + basename + '''</h1>
 </td></tr>
