@@ -113,7 +113,7 @@ as user shapes in Graphviz.
 <li>Laszlo Szathmary provides a
 <a href="http://www.hotscripts.com/Detailed/16749.html">PHP+GraphViz tool</a>
 that makes a sitemap of a web site dynamically
-<a href="http://www.loria.fr/~szathmar/off/projects/php/phptraverse/traverse.php?dir=.&sitemap=1">(example)</a>.
+<a href="http://webloria.loria.fr/~szathmar/off/projects/php/phptraverse/traverse.php?dir=.&sitemap=1">(example)</a>.
 <li>Szil&aacute;rd Vajda  has written
 <a href="http://www.hotscripts.com/Detailed/28164.html">DAWG CREATOR</a>,
 a C++ class for creating a prefix tree representation of a given lexicon.
