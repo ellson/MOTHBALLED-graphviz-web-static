@@ -170,7 +170,17 @@ of what GNU <tt>configure</tt> does).  If you're Lefty
 or Dave Korn, you already knew that.
 <P>
 <h2>Build tools for win32</h2>
+<p>See separate
+<A HREF="http://www.graphviz.org/cvs/doc/winbuild.html">
+build notes</A> for Microsoft Windows (in native mode).
 <p>
+With some persistence you can likely get Graphviz to build on
+<A HREF="http://www.research.att.com/sw/tools/uwin">UWIN</A>
+or <A HREF="http://www.cygwin.com/">Cygwin</A> installed on
+Microsoft Windows.  You will still need various third-party packages
+to enable all the Graphviz drivers.
+
+<!--------------------------------------------------------------------------
 Currently we build graphviz on Windows using the MS Visual C++ compiler only.
 The project and makefiles can be found in both the CVS tree and the source
 distribution package in the $ROOT/windows directory. ($ROOT refers
@@ -259,6 +269,7 @@ binding the lib/lib/z that goes with /usr/lib/z.lib).
 </li>
 <P>
 <li>
+----------------------------------------------------------->
 We haven't tried to build tcldot or webdot in win32.
 </li>
 <h2>Unix platform-specific build notes</h2>

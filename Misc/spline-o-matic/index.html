@@ -1,17 +1,9 @@
 <HTML>
 <HEAD>
-<TITLE> GraphViz: Spline-o-Matic </TITLE>
+<TITLE>Graphviz: Spline-o-Matic </TITLE>
 </HEAD>
-<BODY BACKGROUND="/backgrounds/wm5b.gif">
-<H2 ALIGN=CENTER>
-<IMG SRC="/banners/SplineOMatic.gif" HEIGHT=70 WIDTH=494 ALT="Spline-o-matic">
-<P>
-<IMG SRC=/icons/bline.gif>
-</H2>
-
-<IMG SRC="splino.gif" WIDTH="183" HEIGHT="206" ALIGN="LEFT"> <P>
-
 <H2> Spline-o-matic </H2>
+<IMG SRC="splino.gif" WIDTH="183" HEIGHT="206" ALIGN="LEFT"> <P>
 <i> Spline-o-matic </i> is an edge router that
 draws Bezier curves in diagrams. It comes with a
 TCL/tk interface for tests and demos.
@@ -28,7 +20,6 @@ drawn to connect the endpoints
 It returns a Bezier curve that connects the endpoints 
 and stays within the admissable region.  The curve is
 smooth and close to a shortest path.  
-
 <P> 
 
 <H3>Spline-o-matic Solves Two Types of Problems</H3>
@@ -110,18 +101,18 @@ _barriers);
 </CODE></PRE></DL>
 
 <h2>Distribution</h2>
-This is a source release -  considerable know-how is needed
-to work with it.  The GUI depends on TCL 7.6 or above.  The
-path planner is built as a static library.  The TCL layer 
-includes this and other functions as a dynamic library.
+The source release is on our <A HREF="Download.html">download page</A>.
+Considerable software know-how is needed to work with it.
+The GUI is written in TCL.  The path planner is built as a static library. 
+The TCL layer includes this and other functions as a dynamic library.
 <h2>GUI</h2>
 The package has a C library interface and a TCL/tk GUI (contributed
-by John Ellson, ellson@lucent.com) for demos and debugging.
+by John Ellson, ellson@research.att.com) for demos and debugging.
 Run pathtest.tcl (or tclsh pathtest.tcl).  The GUI permits drawing
 obstacle polygons (use button 1 to place vertices and button 2 to
 place the last vertex of a polygon).
 <p>
- pathtest comes with a few
+pathtest comes with a few
 sample obstacle configurations.
 To try it, run pathtest.tcl.
 load an example, click on the Bezier radio button,
@@ -129,28 +120,8 @@ and use mouse button 1 and 2 to sweep a line segment.
 A curve will be routed between its endpoints.
 The choice of routing inside a polygon or routing around
 obstacles depends on the endpoints.
-
 <h2>References</h2>
-Implementing a General-purpose Edge Router: PostScript,
-bibtex entry, Quicktime video.
-
-<DIV ALIGN="CENTER">
-<p>
-<A HREF="/cgi-bin/imagemap/maps/ToolBar.map">
-<IMG SRC="/banners/ToolBar.gif" HEIGHT=69 WIDTH=489 BORDER=0 ISMAP></A>
-<BR>
-[ <A HREF=/>Home</A>
-| <A HREF=/info/>People</A>
-| <A HREF=/library/>Library</A>
-| <A HREF=/demos/>Demos</A>
-| <A HREF=/history/>History</A>
-| <A HREF=/news/>News</A>
-| <A HREF=/TOC/>TOC</A>
-]
-</DIV>
-
-<p>
-<A HREF=/cgi-bin/imagemap/maps/CopyrightNotice.map>
-<IMG SRC=/banners/CopyrightNotice.gif BORDER=0 ISMAP></A>
+Implementing a General-purpose Edge Router:
+<A HREF="http://www.research.att.com/areas/visualization/papers_videos/abstracts/1998dgkn.html>Paper</A>, <A HREF="http://akstage.research.att.com/areas/visualization/papers_videos/videos/pathrouter.mpg">Quicktime video</A>.
 </BODY>
 </HTML>
