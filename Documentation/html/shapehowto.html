@@ -1,0 +1,312 @@
+<HTML>
+<HEAD>
+<TITLE>Graphviz</TITLE>
+</HEAD>
+
+<body bgcolor="#ffffff" leftmargin=0
+topmargin=0 marginheight=0 marginwidth=0 link="#339999" vlink="#888888">
+
+<!-- title bar -->
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top"><a href="http://www.att.com/"><img 
+src="/banners/ATTlogo.gif" width=124 height=107 border=0
+
+alt="AT&T"></a></td>
+<td><a href="/cgi-bin/private/disp_private"><img 
+src="/banners/Main.gif" width=476 height=65
+
+alt="AT&T Labs Research" border=0></a><br>
+<A HREF="http://www.research.att.com/sw/tools/graphviz">
+<img src="/banners/Graphviz.gif" width=476 height=42 alt="Graphviz"
+border=0></A></td>
+</tr>
+</table>
+<!-- /title bar -->
+
+<table border="0" width="600">
+
+<tr>
+
+<!-- navigation -->
+<td valign="top" width="134">
+<a href="/"><img src="/toolbars/nav_home_a.gif" width=134
+
+height=37 border=0 alt="Home"></a><br>
+<a href="/info/"><img src="/toolbars/nav_people_a.gif"
+width=134 height=46 alt="People" border=0></a><br>
+<a href="/info/Projects"><img src="/toolbars/nav_projects_a.gif"
+width=134 height=42 border="0" alt="Projects"></a><br>
+<a href="/areas/"><img src="/toolbars/nav_research_a.gif"
+width=134 height=61 alt="Research Areas" border="0"></a><br>
+<a href="/resources/"><img src="/toolbars/nav_resources_a.gif"
+width=134 height=41 border="0" alt="Resources"></a><br>
+<a href="/search.html"><img src="/toolbars/nav_search_a.gif"
+width=134 height=36 alt="Search" border="0"></a>
+<form action="http://daikon.research.att.com/cgi-bin/search" method="POST">
+<div align="right">
+<img src="/toolbars/nav_quicksearch.gif" width=114 height=20
+
+alt="Quick Search" border="0"><img src="/icons/spacer.gif" width=18 
+height=1 alt="spacer"><br>
+<input type="text" size="10" name="query"><img 
+src="/icons/spacer.gif" width=18 height=1 alt="spacer">
+<input type="hidden" name="collection" value="www">
+</div>
+</form>
+</td>
+<!-- /navigation -->
+
+<td valign="top" align="left">
+
+<!-- user content -->
+
+<P>
+<IMG SRC=/icons/bline.gif ALT="--------------" >
+</center>
+
+
+<h3> Graphviz custom shapes </h3>
+
+As alluded to in the
+<A HREF=dotguide.pdf>
+dot user's guide</A>,
+there are several ways to incorporate
+custom shapes in dot (or neato).
+At this point, they either must be in Postscript or image files,
+or you'll need to modify the <A HREF=download.html>source code</A>.
+
+A bad problem is that you won't get these custom shapes in the
+interactive front ends <tt>dotty</tt> or <tt>Grappa</tt>.  That's
+the problem with having high-level shape specifications and no
+corresponding common library to implement them. 
+What we need is to revamp the graphics drivers, maybe using GTK
+or a variant of XML, and update all the
+tools to use the same library (or at least compatible versions).
+At the same time, we would like to add features like changing fonts
+and colors within a text label and text formatting. 
+(And while we're at it, move dot
+to the new spline router now used in neato.)  We have
+working code for parts of all this but haven't finished the job.
+
+<h4> <A NAME=ext_image>External image files</A> </h4>
+If using SVG (<TT>-Tsvg</TT>), PostScript (<TT>-Tps</TT>,<TT>-Tps2</TT>) 
+or one of the raster
+formats (<TT>-Tgif</TT>, <TT>-Tpng</TT>, or <TT>-Tjpg</TT>),
+you can load certain images (e.g. pictures) by file name into nodes. 
+For example:
+<pre>
+   yournode [shapefile="yourface.gif"];
+</pre>
+indicates the contents of the node are given in 
+the GIF file <TT>yourface.gif</TT>. The 
+<A HREF=http://www.research.att.com/~erg/graphviz/info/attrs.html#d:shapefile>shapefile</A>
+attribute specifies which file to use.
+<P>
+<I>
+NOTE: In versions before 11 March, in particular, 1.12 graphviz and earlier,
+it is necessary to also set the attribute <TT>shape=custom</TT>.
+</I>
+<P>
+With <TT>-Tsvg</TT>, the requested file string is merely copied into the 
+output as an <TT>&lt;image&gt;</TT> element, so it can be a full URL string. 
+Graphviz doesn't check that it's a 
+valid, accessible URL - the user will find out when an SVG viewer tries to 
+display the graph.
+<P>
+With PostScript, shapefile must give the name of a file containing
+encapsulated postscript. The contents are copied into the output file.
+Note that the same file will only be copied in once.
+The restrictions on the contents of the shapefile are the same as
+those specified below under
+<A HREF=#ext_ps>External PostScript files</A>.
+<P>
+In the raster formats (based on Boutell's <tt>libgd</tt>),
+<TT>shapefile</TT> is a file name containing a bitmap image.
+The file is opened and 
+copied (and possibly scaled) into the output drawing.
+<P>
+This code is still preliminary, and we have noted some problems
+with color quantization in indexed color map management that we
+are trying to understand and correct. (You can use <TT>-Gtruecolor=1</TT>
+to try a 32 bit internal canvas as an alternative, but we have observed
+fuzziness (lossiness?) in the images.)
+
+<h4> <A NAME=ext_ps>External PostScript files </A></h4>
+
+If using the Postscript driver (<TT>-Tps</TT>) you can
+import node shapes as external Postscript files such as EPS
+(Encapsulated Postscript).  At a minimum, the external file
+must have a valid <TT>BoundingBox</TT> header and not do
+drastic things to the graphics state since we don't install
+a wrapper for example to inhibit <TT>showpage</TT>.
+<P>
+To import an external Postscript file, set the <TT>shape</TT>
+and <TT>shapefile</TT> attributes as shown here:
+
+<dfn><TT>
+	somenode  [shape=epsf, shapefile="yourfile.ps" ];
+</TT></dfn>
+
+An EPSF shape is always clipped to its bounding box.
+
+<h4> External PostScript procedures </h4>
+If using the Postscript driver (<TT>dot -Tps</TT>), you can define
+a Postscript procedure for shape drawing.  The procedure must
+be able to draw variable-sized shapes.  A file containing
+the definition can be loaded as a command line argument using
+the <TT>-l</TT> flag:
+<PRE><TT>
+	dot  -Tps -l yourPS.ps  file.dot -o file.ps
+</TT></PRE>
+In the graph file, invoke the shape like this:
+
+<PRE><TT>
+	somenode [shape=yourshape]
+</TT></PRE>
+
+In <TT>file.ps</TT>, the procedure for <TT>yourshape</TT> will be called 
+like this:
+
+<PRE><TT>
+[ 54 36 0 36 0 0 54 0 54 36 ]  4 false yourshape
+</TT></PRE>
+
+The array contains the shape's bounding polygon, with the first
+point repeated at the end, followed by the number
+of points. At present it is always 4.  <TT>false</TT> is the value of the
+node's "fill" attribute.   The coordinates are absolute canvas coords.
+<P>
+For example, here are the contents of a plausible shape file, <TT>DFD.ps</TT>,
+which can be invoked by
+<TT>[shape=DFDbox]</TT>
+
+<PRE>
+	/xdef {exch def} bind def
+	/DFDbox {
+		10 dict begin
+			/fflag xdef
+			/sides xdef
+			dup
+			aload pop
+			% draw the sides
+			newpath
+			moveto
+			1 1 sides {
+				2 mod 0 ne
+				{moveto} % even sides
+				{lineto currentpoint stroke moveto} % odd sides
+				ifelse
+			} for
+			fflag   % if shape is filled
+			{
+				aload pop
+				newpath
+				moveto
+				1 1 sides { pop lineto } for
+				closepath fill
+			}
+			{pop}
+			ifelse
+		end
+	} bind def
+</PRE>
+
+
+A custom shape of this kind is always clipped to its bounding box.
+It would not be hard to create a hook in the function <TT>user_shape()</TT>
+in <TT>shapes.c</TT> to determine clipping polygons other than rectangles (maybe)
+in case someone wants to try this and contribute the code for this.
+
+<h4> Driver-independent custom shapes </h4>
+If not using Postscript, you'll need to roll up your sleeves and
+modify the source.  None of the other code generators support custom
+node shapes directly, yet.
+
+If the custom shape is to be high-level and driver-independent, then
+you can add shape-specific functions (methods) to <TT>shapes.c</TT> with
+a corresponding entry in the array <TT>Shapes[]</TT>  that maps
+shape names to methods.  The method interfaces are described in the comment
+header in this file.
+Methods must be defined to initialize a shape (typically to size it big enough
+to fit its text label), bind a port name to a coordinate, test if a point
+is inside an instance of the shape (for edge clipping), generate code
+for the shape via the <TT>CodeGen</TT> functions, and return a box path
+to reach ports on the interior of a node (if they can exist).
+<p>
+This is where you'd implement a shape that can be drawn as
+a sequence of strokes, filled paths, and text labels.
+<p>
+Shapes that behave more or less like polygons can be bootstrapped from
+the basic polygon methods; see for example the "invtri" shape.  Such
+shapes use a polygon descriptor whose fields are listed below.
+
+<table border cellspacing=0 cellpadding=5>
+<caption align=top>Polygon descriptor fields</caption>
+<tr align=left><th>regul</th><td> if a regular polygon</td><td>FALSE</td></tr>
+<tr align=left><th>perip</th><td> number of border peripheries</td><td>1</td></tr>
+<tr align=left><th>sides</th><td> number of sides (1 for curves)</td><td>4</td></tr>
+<tr align=left><th>orien</th><td> angular rotation in degrees </td><td>0</td></tr>
+<tr align=left><th>disto</th><td>trapezoidal distortion</td><td>0</td></tr>
+<tr align=left><th>skew</th><td>parallelogram distortion</td><td>0</td></tr>
+<tr align=left><th>flags</th><td>fancy options: ROUNDED, DIAGONALS, AUXLABELS</td><td>0</td></tr>
+</table>
+<p>
+For example shapes not derived from general polygons, see the <TT>record</TT> or <TT>epsf</TT> shape.
+
+
+<h4> Driver-dependent custom shapes </h4>
+To implement a driver-specific shape (such as
+<A HREF="http://cloanto.com/users/mcb/19950127giflzw.html">GIF</A> or
+<A HREF="http://www.cdrom.com/pub/png/">PNG</A>
+icons) you'll need to write a body for the driver function that implements user-defined 
+shapes. (The drivers are in <TT>*gen.c</TT>). A user shape function
+receives four arguments: <br>
+	- the custom shape name string <br>
+	- the absolute canvas coords of the shape bounding polygon <br>
+	- number of coords (currently, always 4) <br>
+	- fill flag <br>
+<p>
+The rest is up to you, but contact us first just in case.  
+(FYI, the 
+<A HREF="http://www.graphviz.org/cvs.html">
+gv1.6 beta</A> has a compile-time PNG replacement for the GIF driver.)
+<P>
+<center>
+<!-- /user content -->
+
+</td>
+</tr>
+<tr>
+<td></td>
+<td align="center">
+<!-- bottom navigation-->
+<br><br><br>
+<font face="arial,helvetica" size="-1">
+<a href="/">home</a> | 
+<a href="/info/">people</a> |
+<a href="/info/Projects">projects</a> |
+<a href="/areas/">research areas</a> |
+<a href="/resources/">resources</a> |
+<a href="/search.html">search</a> |
+<a href=/~north/graphviz>graphviz</A>
+</font>
+<!-- /bottom navigation-->
+</td>
+</tr>
+</table>
+
+<p>
+<a href="/maps/CopyrightNotice.map"><img ismap
+src="/footers/CopyrightNotice.gif" width=484 height=73 border="0" 
+alt="Copyright and Privacy Notice"></a>
+</p>
+
+</body>
+</html>
+
+<ADDRESS>
+Last Update: Thu Oct 19 13:39:01 EDT 2000
+</ADDRESS>
+</BODY>
+</HTML>
