@@ -54,6 +54,8 @@
 
 ;;; History:
 
+;; Version 0.3.4 bug fixes
+;; 24/02/2005: * fixed a bug in graphviz-dot-preview
 ;; Version 0.3.3 bug fixes
 ;; 13/02/2005: Reuben Thomas <rrt AT sc3d.org>
 ;;             * add graphviz-dot-indent-width
@@ -756,7 +758,8 @@ loaded in GNU Emacs, and `image-formats-alist' for XEmacs."
     (if (string-match "XEmacs" emacs-version)
         ;; things are easier in XEmacs...
         (find-file-other-window (concat (file-name-sans-extension
-                            buffer-file-name) ".png"))
+					 buffer-file-name)
+					"." graphviz-dot-preview-extension))
       ;; run through all the extensions for images
       (let ((l image-file-name-extensions))
         (while
