@@ -31,7 +31,7 @@ fout.write('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 </td></tr>
 <tr><td valign="top">
 <!-- menu -->
-\t<table hight="100%" bgcolor="#c0c0ff">\n''')
+\t<table bgcolor="#c0c0ff">\n''')
 
 for page in pageset:
   menuitem = page.split('.')[0]
