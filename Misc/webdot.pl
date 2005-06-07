@@ -91,6 +91,7 @@ my %KnownTypes = (
 	epsi =>   'application/postscript',
 	pdf =>    'application/pdf',
 	map =>    'text/plain',
+	cmapx =>  'text/plain',
 	txt =>    'text/plain',
 	src =>    'text/plain',
 );
