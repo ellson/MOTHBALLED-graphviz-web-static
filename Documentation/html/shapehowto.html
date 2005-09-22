@@ -12,14 +12,14 @@ As alluded to in the
 <A HREF=dotguide.pdf>
 dot user's guide</A>,
 there are several ways to incorporate
-custom shapes in dot (or neato).
-At this point, they either must be in Postscript or image files,
+custom shapes.
+At this point, they either must be in PostScript or image files,
 or you'll need to modify the <A HREF=download.html>source code</A>.
 
 A serious problem is that you can't make custom shapes that work
-across all the drivers and the interactive front ends <tt>dotty</tt>
+across all the drivers and the interactive front ends such as <tt>dotty</tt>
 or <tt>Grappa</tt>.   At least SVG has interactive renderers, 
-and Postscript can be translated to PDF which also has some
+and PostScript can be translated to PDF which also has some
 interactive features.  Improving the architecture of the graphics
 drivers is an ongoing project of ours.
 
@@ -49,8 +49,9 @@ valid, accessible URL - the user will find out when an SVG viewer tries to
 display the graph.
 <P>
 With PostScript, shapefile must give the name of a file containing
-encapsulated postscript. The contents are copied into the output file.
-Note that the same file will only be copied in once.
+encapsulated PostScript or a bitmap. 
+The contents are copied into the output file.
+Note that encapsulated PostScript will only be copied in once.
 The restrictions on the contents of the shapefile are the same as
 those specified below under
 <A HREF=#ext_ps>External PostScript files</A>.
@@ -71,15 +72,14 @@ more restrictive. See <A HREF=d:GV_FILE_PATH>GV_FILE_PATH</A> and
 <A HREF=d:SERVER_NAME>SERVER_NAME</A>.
 
 <h4> <A NAME=ext_ps>External PostScript files </A></h4>
-
-If using the Postscript driver (<TT>-Tps</TT>) you can
-import node shapes as external Postscript files such as EPS
-(Encapsulated Postscript).  At a minimum, the external file
+If using the PostScript driver (<TT>-Tps</TT>) you can
+import node shapes as external PostScript files such as EPS
+(Encapsulated PostScript).  At a minimum, the external file
 must have a valid <TT>BoundingBox</TT> header and not do
 drastic things to the graphics state since we don't install
 a wrapper for example to inhibit <TT>showpage</TT>.
 <P>
-To import an external Postscript file, set the <TT>shape</TT>
+To import an external PostScript file, set the <TT>shape</TT>
 and <TT>shapefile</TT> attributes as shown here:
 
 <dfn><TT>
@@ -87,10 +87,14 @@ and <TT>shapefile</TT> attributes as shown here:
 </TT></dfn>
 
 An EPSF shape is always clipped to its bounding box.
+<P>
+The use of <tt>[shape=epsf, shapefile="yourfile.ps" ]</tt> is largely 
+superceded by the mechanism described in the previous section, using
+<tt>[shapefile="yourfile.ps" ]</tt>.
 
 <h4> External PostScript procedures </h4>
-If using the Postscript driver (<TT>dot -Tps</TT>), you can define
-a Postscript procedure for shape drawing.  The procedure must
+If using the PostScript driver (<TT>dot -Tps</TT>), you can define
+a PostScript procedure for shape drawing.  The procedure must
 be able to draw variable-sized shapes.  A file containing
 the definition can be loaded as a command line argument using
 the <TT>-l</TT> flag:
@@ -112,8 +116,11 @@ like this:
 
 The array contains the shape's bounding polygon, with the first
 point repeated at the end, followed by the number
-of points. At present it is always 4.  <TT>false</TT> is the value of the
-node's "fill" attribute.   The coordinates are absolute canvas coords.
+of points. At present, the shape is always a rectangle. From left to right, the
+points in the array always go counterclockwise, starting with the
+upper-right vertex. The boolean value after the number of vertices,
+here <TT>false</TT>, is the value of the
+node's "fill" attribute.  The coordinates are absolute canvas coordinates.
 <P>
 For example, here are the contents of a plausible shape file, <TT>DFD.ps</TT>,
 which can be invoked by
@@ -155,9 +162,12 @@ A custom shape of this kind is always clipped to its bounding box.
 It would not be hard to create a hook in the function <TT>user_shape()</TT>
 in <TT>shapes.c</TT> to determine clipping polygons other than rectangles (maybe)
 in case someone wants to try this and contribute the code for this.
-
+<P>
+Note that, by default, the bounding box is drawn around the contents
+and the node label is drawn. If you wish to eliminate these,
+set label="" and peripheries=0 in the node. 
 <h4> Driver-independent custom shapes </h4>
-If not using Postscript, you'll need to roll up your sleeves and
+If not using PostScript, you'll need to roll up your sleeves and
 modify the source.  None of the other code generators support custom
 node shapes directly, yet.
 
