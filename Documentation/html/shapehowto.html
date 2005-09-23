@@ -107,13 +107,14 @@ In the graph file, invoke the shape like this:
 	somenode [shape=yourshape]
 </TT></PRE>
 
-In <TT>file.ps</TT>, the procedure for <TT>yourshape</TT> will be called 
-like this:
+In <TT>file.ps</TT>, for non-filled nodes,
+the procedure for <TT>yourshape</TT> will be called like this:
 
 <PRE><TT>
 [ 54 36 0 36 0 0 54 0 54 36 ]  4 false yourshape
 </TT></PRE>
 
+where the current color is the node's pencolor.
 The array contains the shape's bounding polygon, with the first
 point repeated at the end, followed by the number
 of points. At present, the shape is always a rectangle. From left to right, the
@@ -121,6 +122,21 @@ points in the array always go counterclockwise, starting with the
 upper-right vertex. The boolean value after the number of vertices,
 here <TT>false</TT>, is the value of the
 node's "fill" attribute.  The coordinates are absolute canvas coordinates.
+<P>
+For nodes with <TT>fill=true</TT>, the above invocation of <tt>yourshape</tt>
+will be preceded by
+
+<PRE><TT>
+[ 54 36 0 36 0 0 54 0 54 36 ]  4 true yourshape
+</TT></PRE>
+
+where the current color is the node's fillcolor.
+<P>
+<I>
+NOTE: In versions before 23 September 2005,
+<tt>yourshape</tt> is only invoked once, with the node's fill value
+and with the color set to the node's pencolor.
+</I>
 <P>
 For example, here are the contents of a plausible shape file, <TT>DFD.ps</TT>,
 which can be invoked by
@@ -132,17 +148,6 @@ which can be invoked by
 		10 dict begin
 			/fflag xdef
 			/sides xdef
-			dup
-			aload pop
-			% draw the sides
-			newpath
-			moveto
-			1 1 sides {
-				2 mod 0 ne
-				{moveto} % even sides
-				{lineto currentpoint stroke moveto} % odd sides
-				ifelse
-			} for
 			fflag   % if shape is filled
 			{
 				aload pop
@@ -151,7 +156,18 @@ which can be invoked by
 				1 1 sides { pop lineto } for
 				closepath fill
 			}
-			{pop}
+			{
+				aload pop
+				% draw the sides
+				newpath
+				moveto
+				1 1 sides {
+					2 mod 0 ne
+					{moveto} % even sides
+					{lineto currentpoint stroke moveto} % odd sides
+					ifelse
+				} for
+            }
 			ifelse
 		end
 	} bind def
