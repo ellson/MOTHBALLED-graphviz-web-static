@@ -8,8 +8,10 @@ do
 	if  [[ $j != fdp* ]] ;
 	then
 		neato -Tpng -Gsize="7,7" $i -o $j.png
+		neato -Tsvg $i -o $j.svg
 	else
 		fdp -Tpng -Gsize="7,7" $i -o $j.png
+		fdp -Tsvg $i -o $j.svg
 		echo use fdp!
 	fi
 	convert -resize 160x160 $j.png $j.small.png
