@@ -1,5 +1,4 @@
 #!/bin/ksh
-# this script was written for SGI IRIX
 TCL=/usr/common/tcl8.3.1
 PKG=/home/north/www-etc/sgi.mips3/lib
 WWW=/home/north/cgi-bin/webdot1.7.11/
@@ -27,21 +26,12 @@ ulimit -t 10	 # CPU seconds max
 ulimit -v 500000 # 500 megs of virtual memory
 ulimit -f 8192	 # 8192 * 512 = 4meg files
 trap 'except'  XCPU XFSZ  SEGV ERR
-
-# the following limits webdot to run on
-# only a subset of the available CPUs
-# on an SMP.  this was done to appease
-# users who complained that webdot was
-# hogging the entire server.
-#
-# 'runon' is available on IRIX and SGI Altix
-# I don't know what people use on other SMPs.
-# if you don't care, then delete this and just say
-# tclsh $WWW/webdot.tcl
-#
 ncpu=`hinv -c processor | sed "s/ .*//p
 1q"`
-ncpu=$((ncpu > 3? ncpu / 2 + 1 : 2))
-cpu=$((RANDOM % (ncpu - 1) + 1))
+case $ncpu in
+	0|1) cpu=0 ;;
+	2|3) cpu=1 ;;
+	*) cpu=$((RANDOM % (ncpu / 2) + 1)) ;;
+esac
 runon $cpu tclsh $WWW/webdot.tcl
 exit
