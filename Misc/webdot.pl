@@ -9,6 +9,9 @@
 # The argument can be passed in the PATH_INFO environment variable as
 # in a typical Apache setup, or as a command line argument for manual
 # testing. 
+#
+# Also note that under apache, this script must be executable according
+# to httpd.conf - check for the suffixes or file types allowed.
 # 
 # The server must be: dot, neato, or twopi.
 # The output type must be one of dot's output types.  The server
@@ -27,7 +30,7 @@
 # if its cache is valid.  This is checked using $SigCommand on the dot source
 # (typically md5 or at least cksum).
 #
-# The cache should be cleaned externally, for example by a cron job.
+# THE CACHE SHOULD BE CLEANED EXTERNALLY, FOR EXAMPLE BY A CRON JOB.
 # When testing, remember to clobber cache entries manually as needed.
 #
 # If we thought users were going to request many layouts of the same
@@ -58,7 +61,7 @@ use LWP;
 # for example apache's default httpd.conf specifies that CGI programs such
 # as this one run as user 'nobody'.  in that case the cache directory must
 # be writable by 'nobody' - either mode 0777 or chown to nobody.
-my $Tdir = '/home/north/www/webdot/tmp';
+my $Tdir = '/home/north/public_html/tmp/';
 
 # set $GraphvizBinDir to the dot/neato/twopi standalone command directory.
 # DotFontPath shouldn't be necessary, but our graphviz installation is broken.
@@ -156,6 +159,9 @@ sub up_doc {
     # if($size > 0) { $oldsig = `$SigCommand $dotfile`; }
     $oldsig = ($size > 0? `$SigCommand $dotfile` : 0);
 
+		# Can anyone tell me why http://blabla was changed to http:/blabla
+		# and why I have to fix it this way? SCN  3/22/2006
+		$url =~ s%http:/([^/])%http://$1%;
     my $browser = LWP::UserAgent->new();   ## Create a virtual browser
     $browser->agent("Kipper Browser");     ## Name it
     ## Do a GET request on the URL with the fake browser
@@ -209,7 +215,21 @@ sub up_doc {
 		$cmd = "$EPSIfilter < $tmpfile > $tagfile";
 		return unless (run_under_lock($tagfh, $cmd));
 	} elsif ($tag eq 'pdf') {
-		$cmd = "$GS -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$tagfile $tmpfile";
+		# need BoundingBox
+		my @box;
+		open(EPS, "<$tmpfile") or
+			trouble "webdot: Cannot open $tmpfile for reading", return;
+		while(<EPS>) {
+			if(/^%%BoundingBox:\s*(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s*$/) {
+				@box = ($1, $2, $3, $4);
+				last;
+			}
+		}
+		unless( @box ) {
+			trouble "webdot: I didn't find a valid boundingbox in $tmpfile";
+			return;
+		}
+		$cmd = "$GS -dDEVICEWIDTHPOINTS=$box[2] -dDEVICEHEIGHTPOINTS=$box[3] -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$tagfile $tmpfile";
 		return unless (run_under_lock($tagfh, $cmd));
 	}
     }
@@ -226,7 +246,7 @@ sub get_dot {
     my $urltag = shift;
     my ($url, $base, $layouter, $tag);
 
-    # if ($urltag =~ /^(.+)[.]([^.]+)$/) {
+    # if ($urltag =~ /^(.+)[.]([^.]+)$/) 
     if ($urltag =~ /^(.+)[.]([^.]+)[.]([^.]+)$/) {
 	($url, $layouter, $tag) = ($1, $2, $3);
 	unless ($KnownServers{$layouter}) {
@@ -238,7 +258,8 @@ sub get_dot {
 	    return;
 	}
 	# ($base = $url) =~ s:/:-:g;
-	($base = $url) =~ s%[/:]%-%g;
+	$base = $url;
+	$base =~ s%[/:]%-%g;
 	# trouble("I see: '$base' '$url' '$layouter' '$tag' \n"); return;
 	up_doc($base, $url, $layouter, $tag);
     } else {
@@ -263,7 +284,7 @@ EOF
 sub main {
     my $arg;
     if ($arg = ($ENV{'PATH_INFO'})) {
-	    $arg =~ s:/::;
+	    $arg =~ s:/::;			# strip initial
 	}
 	else  {
 		$arg = $ARGV[0];
