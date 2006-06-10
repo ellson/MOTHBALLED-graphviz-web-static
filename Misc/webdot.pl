@@ -9,9 +9,6 @@
 # The argument can be passed in the PATH_INFO environment variable as
 # in a typical Apache setup, or as a command line argument for manual
 # testing. 
-#
-# Also note that under apache, this script must be executable according
-# to httpd.conf - check for the suffixes or file types allowed.
 # 
 # The server must be: dot, neato, or twopi.
 # The output type must be one of dot's output types.  The server
@@ -30,7 +27,7 @@
 # if its cache is valid.  This is checked using $SigCommand on the dot source
 # (typically md5 or at least cksum).
 #
-# THE CACHE SHOULD BE CLEANED EXTERNALLY, FOR EXAMPLE BY A CRON JOB.
+# The cache should be cleaned externally, for example by a cron job.
 # When testing, remember to clobber cache entries manually as needed.
 #
 # If we thought users were going to request many layouts of the same
@@ -161,7 +158,7 @@ sub up_doc {
 
 		# Can anyone tell me why http://blabla was changed to http:/blabla
 		# and why I have to fix it this way? SCN  3/22/2006
-		$url =~ s%http:/([^/])%http://$1%;
+		$url =~ s%(http[s]?:/)([^/])%$1/$2%;
     my $browser = LWP::UserAgent->new();   ## Create a virtual browser
     $browser->agent("Kipper Browser");     ## Name it
     ## Do a GET request on the URL with the fake browser
@@ -284,7 +281,7 @@ EOF
 sub main {
     my $arg;
     if ($arg = ($ENV{'PATH_INFO'})) {
-	    $arg =~ s:/::;			# strip initial
+	    $arg =~ s%/%%;			# strip initial
 	}
 	else  {
 		$arg = $ARGV[0];
