@@ -1,6 +1,6 @@
 #!/bin/ksh
-for i in *.dot.txt
-do
+function doGraph {
+    i=$1
 	echo $i
 	j=${i%.dot.txt}
 	# can't use neato -s -n2 because it does strange things to 
@@ -16,4 +16,18 @@ do
 	fi
 	convert -resize 160x160 $j.png $j.small.png
 	# dot -Tpng -Gsize="1.75,1.75" $i -o $j.small.png
+}
+
+if [[ $# > 0 ]]
+then
+  while [[ $# > 0 ]]
+  do
+    doGraph $1
+    shift
+  done
+else
+for i in *.dot.txt
+do
+    doGraph $i
 done
+fi
