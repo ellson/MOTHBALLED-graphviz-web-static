@@ -38,15 +38,15 @@ the GIF file <TT>yourface.gif</TT>. The
 attribute specifies which file to use.
 <P>
 <I>
-NOTE: In versions before 11 March, in particular, 1.12 graphviz and earlier,
+NOTE: In versions before 11 March 2006, in particular, 1.12 graphviz and earlier,
 it is necessary to also set the attribute <TT>shape=custom</TT>.
 </I>
 <P>
-With <TT>-Tsvg</TT>, the requested file string is merely copied into the 
-output as an <TT>&lt;image&gt;</TT> element, so it can be a full URL string. 
-Graphviz doesn't check that it's a 
-valid, accessible URL - the user will find out when an SVG viewer tries to 
-display the graph.
+With <TT>-Tsvg</TT>, shapefile must give the name of a file containing
+a GIF, PNG or JPEG bitmap file. 
+Note that the file's contents are not copied into
+the SVG output, only the files name. Thus, for Graphviz SVG output to
+display correctly, the image file must be available to the SVG viewer.
 <P>
 With PostScript, shapefile must give the name of a file containing
 encapsulated PostScript or a bitmap. 
