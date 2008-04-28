@@ -1,12 +1,11 @@
-<HTML>
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML VERSION="2.0">
 <HEAD>
 <TITLE>Graphviz custom shapes</TITLE>
 </HEAD>
-
-<body bgcolor="#ffffff" leftmargin=0
-topmargin=0 marginheight=0 marginwidth=0 link="#339999" vlink="#888888">
-
-<H3> Graphviz custom shapes </H3>
+<BODY BGCOLOR=white>
+<A NAME="top"></A>
+<H1 ALIGN=CENTER>Graphviz custom shapes</H1>
 
 As alluded to in the
 <A HREF=dotguide.pdf>
@@ -27,37 +26,41 @@ drivers is an ongoing project of ours.
 If using SVG (<TT>-Tsvg</TT>), PostScript (<TT>-Tps</TT>,<TT>-Tps2</TT>) 
 or one of the raster
 formats (<TT>-Tgif</TT>, <TT>-Tpng</TT>, or <TT>-Tjpg</TT>),
-you can load certain images (e.g. pictures) by file name into nodes. 
+you can load certain images (e.g., pictures) by file name into nodes. 
 For example:
 <pre>
-   yournode [shapefile="yourface.gif"];
+   yournode [image="yourface.gif"];
 </pre>
 indicates the contents of the node are given in 
 the GIF file <TT>yourface.gif</TT>. The 
-<A HREF=http://www.research.att.com/~erg/graphviz/info/attrs.html#d:shapefile>shapefile</A>
+<A HREF=http://www.graphviz.org/doc/info/attrs.html#d:image>image</A>
 attribute specifies which file to use.
+There is also the deprecated
+<A HREF=http://www.graphviz.org/doc/info/attrs.html#d:shapefile>shapefile</A>
+attribute. This is similar to <TT>image</TT> but the node shape will always
+be a box. 
 <P>
 <I>
 NOTE: In versions before 11 March 2006, in particular, 1.12 graphviz and earlier,
 it is necessary to also set the attribute <TT>shape=custom</TT>.
 </I>
 <P>
-With <TT>-Tsvg</TT>, shapefile must give the name of a file containing
+With <TT>-Tsvg</TT>, <TT>image</TT> must give the name of a file containing
 a GIF, PNG or JPEG bitmap file. 
 Note that the file's contents are not copied into
 the SVG output, only the files name. Thus, for Graphviz SVG output to
 display correctly, the image file must be available to the SVG viewer.
 <P>
-With PostScript, shapefile must give the name of a file containing
+With PostScript, <TT>image</TT> must give the name of a file containing
 encapsulated PostScript or a bitmap. 
 The contents are copied into the output file.
 Note that encapsulated PostScript will only be copied in once.
-The restrictions on the contents of the shapefile are the same as
+The restrictions on the contents of the <TT>image</TT> are the same as
 those specified below under
 <A HREF=#ext_ps>External PostScript files</A>.
 <P>
-In the raster formats (based on Boutell's <tt>libgd</tt>),
-<TT>shapefile</TT> is a file name containing a bitmap image.
+For bitmap output,
+<TT><TT>image</TT></TT> is a file name containing a bitmap image.
 The file is opened and 
 copied (and possibly scaled) into the output drawing.
 <P>
@@ -81,16 +84,14 @@ a wrapper for example to inhibit <TT>showpage</TT>.
 <P>
 To import an external PostScript file, set the <TT>shape</TT>
 and <TT>shapefile</TT> attributes as shown here:
-
-<dfn><TT>
+<PRE> <TT>
 	somenode  [shape=epsf, shapefile="yourfile.ps" ];
-</TT></dfn>
-
+</TT></PRE>
 An EPSF shape is always clipped to its bounding box.
 <P>
 The use of <tt>[shape=epsf, shapefile="yourfile.ps" ]</tt> is largely 
 superceded by the mechanism described in the previous section, using
-<tt>[shapefile="yourfile.ps" ]</tt>.
+<tt>[image="yourfile.ps" ]</tt>.
 
 <h4><A NAME=psprocs> External PostScript procedures</A></h4>
 If using the PostScript driver (<TT>dot -Tps</TT>), you can define
