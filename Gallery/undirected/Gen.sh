@@ -2,9 +2,9 @@
 function doGraph {
     i=$1
 	echo $i
-	j=${i%.dot.txt}
+	j=${i%.gv.txt}
 	# can't use neato -s -n2 because it does strange things to 
-	# the records in datastruct.dot
+	# the records in datastruct.gv
 	if  [[ $j != fdp* ]] ;
 	then
 		neato -Tpng -Gsize="7,7" $i -o $j.png
@@ -26,7 +26,7 @@ then
     shift
   done
 else
-for i in *.dot.txt
+for i in *.gv.txt
 do
     doGraph $i
 done
