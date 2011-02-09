@@ -1,4 +1,9 @@
 /*
+Note: All images in the file is found at
+
+http://www.graphviz.org/Gallery/directed/images/
+
+-----------
 
 from Kaarle Kaila:
 
@@ -20,7 +25,7 @@ Attached are both the kennedyanc and kennedydesc files as you requested. I made 
 
 Graphviz dot program is called from withing FinFamily with a command line such as:
 
-"C:\Program Files (x86)\Graphviz2.26.3\bin\dot" -Tjpeg kennedyanc.txt -o kennedyanc.jpg
+dot -Tjpeg kennedyanc.txt -o kennedyanc.jpg
 
 On page http://www.finfamily.fi/index.php/Graphviz is a description on the different colors together with instructions for finFamily users how to create Graphviz reports.
 
