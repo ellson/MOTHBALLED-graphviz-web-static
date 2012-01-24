@@ -1,0 +1,7 @@
+digraph G { fillcolor="purple:pink" label="agraph" fontcolor="white"
+  subgraph cluster1 {fillcolor="blue:cyan" label="acluster" fontcolor="white" gradientangle="270"
+		node [shape=box fillcolor="red:yellow" gradientangle=90]
+		anode;
+	}
+
+} 
