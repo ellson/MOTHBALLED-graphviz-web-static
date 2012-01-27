@@ -1,7 +1,7 @@
 digraph G {bgcolor=blue
 	subgraph cluster_1 { fontcolor="white"
 
-		node [shape = circle,gradient=linear,fillcolor="white:black",
+		node [shape = circle,style=filled,fillcolor="white:black",
 			gradientangle=360 label="n9:360" fontcolor="black" ] "n9"; 
 		node [gradientangle=315 label="n8:315"] "n8"; 
 		node [gradientangle=270 label="n7:270"] "n7"; 
@@ -18,7 +18,7 @@ digraph G {bgcolor=blue
 
 	subgraph cluster_2 { fontcolor="white"
 
-		node [shape = circle,gradient=radial,fillcolor="white:black",
+		node [shape = circle,style=radial,fillcolor="white:black",
 			gradientangle=360 label="n18:360" fontcolor="black" ] "n18"; 
 		node [gradientangle=315 label="n17:315"] "n17"; 
 		node [gradientangle=270 label="n16:270"] "n16"; 
@@ -33,3 +33,4 @@ digraph G {bgcolor=blue
 	}
 n5 -> n14;
 }
+

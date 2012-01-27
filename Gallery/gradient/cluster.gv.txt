@@ -1,11 +1,11 @@
-digraph G {fillcolor="red:cyan" gradientangle=0
+digraph G {bgcolor="red:cyan" gradientangle=0
 
 	subgraph cluster_0 {
 		style=filled;
 		color=lightgrey;
 		fillcolor="blue:yellow";
 		gradientangle=90;
-		node [fillcolor="yellow:green" gradientangle=270] a0;
+		node [fillcolor="yellow:green" style=filled gradientangle=270] a0;
 		node [fillcolor="green:red"] a1;
 		node [fillcolor="red:cyan"] a2;
 		node [fillcolor="cyan:blue"] a3;
@@ -15,7 +15,8 @@ digraph G {fillcolor="red:cyan" gradientangle=0
 	}
 
 	subgraph cluster_1 {
-		node [fillcolor="yellow:magenta" gradientangle=270] b0;
+		node [fillcolor="yellow:magenta" 
+			 style=filled gradientangle=270] b0;
 		node [fillcolor="magenta:cyan"] b1;
 		node [fillcolor="cyan:red"] b2;
 		node [fillcolor="red:blue"] b3;
@@ -24,6 +25,7 @@ digraph G {fillcolor="red:cyan" gradientangle=0
 		label = "process #2";
 		color=blue
 		fillcolor="blue:yellow";
+		style=filled;
 		gradientangle=90;
 	}
 	start -> a0;
@@ -37,10 +39,10 @@ digraph G {fillcolor="red:cyan" gradientangle=0
 	start [shape=Mdiamond ,
 		fillcolor="yellow:brown",
 		gradientangle=90,
-		gradient=radial];
+		style=radial];
 	end [shape=Msquare,
 		fillcolor="orange:blue",
-		gradient=radial,
+		style=radial,
 		gradientangle=90];
 }
 

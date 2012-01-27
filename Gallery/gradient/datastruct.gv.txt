@@ -1,11 +1,13 @@
 digraph g {
 graph [
 rankdir = "LR"
-fillcolor = "bisque4:blue2"
+bgcolor = "white:lightblue"
+style="filled"
 gradientangle = 270];
 node [
 fontsize = "16"
 shape = "ellipse"
+style="filled"
 gradientangle=90
 ];
 edge [
@@ -134,4 +136,5 @@ id = 15
 id = 16
 ];
 }
+
 
