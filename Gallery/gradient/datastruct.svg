@@ -10,11 +10,11 @@
 <title>g</title>
 <defs>
 <linearGradient id="l_0" gradientUnits="userSpaceOnUse" x1="410.5" y1="-609" x2="410.5" y2="5" >
-<stop offset="0" style="stop-color:#8b7d6b;stop-opacity:1.;"/>
-<stop offset="1" style="stop-color:#0000ee;stop-opacity:1.;"/>
+<stop offset="0" style="stop-color:white;stop-opacity:1.;"/>
+<stop offset="1" style="stop-color:lightblue;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_0)" points="-4,5 -4,-609 825,-609 825,5 -4,5"/>
+<polygon fill="url(#l_0)" stroke="none" points="-4,5 -4,-609 825,-609 825,5 -4,5"/>
 <!-- node0 -->
 <g id="node1" class="node"><title>node0</title>
 <defs>
@@ -23,7 +23,7 @@
 <stop offset="1" style="stop-color:blue;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_1)" points="0.5,-444 0.5,-496 73.5,-496 73.5,-444 0.5,-444"/>
+<polygon fill="url(#l_1)" stroke="black" points="0.5,-444 0.5,-496 73.5,-496 73.5,-444 0.5,-444"/>
 <text text-anchor="middle" x="37" y="-479.2" font-family="Times,serif" font-size="16.00">0x10ba8</text>
 <polyline fill="none" stroke="black" points="0.5,-470 73.5,-470 "/>
 <text text-anchor="middle" x="37" y="-453.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -36,7 +36,7 @@
 <stop offset="1" style="stop-color:red;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_2)" points="110,-441 110,-545 202,-545 202,-441 110,-441"/>
+<polygon fill="url(#l_2)" stroke="black" points="110,-441 110,-545 202,-545 202,-441 110,-441"/>
 <text text-anchor="middle" x="156" y="-528.2" font-family="Times,serif" font-size="16.00">0xf7fc4380</text>
 <polyline fill="none" stroke="black" points="110,-519 202,-519 "/>
 <text text-anchor="middle" x="156" y="-502.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -58,7 +58,7 @@
 <stop offset="1" style="stop-color:yellow;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_3)" points="110,-318 110,-422 202,-422 202,-318 110,-318"/>
+<polygon fill="url(#l_3)" stroke="black" points="110,-318 110,-422 202,-422 202,-318 110,-318"/>
 <text text-anchor="middle" x="156" y="-405.2" font-family="Times,serif" font-size="16.00">0xf7fc44b8</text>
 <polyline fill="none" stroke="black" points="110,-396 202,-396 "/>
 <text text-anchor="middle" x="156" y="-379.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -80,7 +80,7 @@
 <stop offset="1" style="stop-color:red;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_4)" points="622.5,-501 622.5,-605 819.5,-605 819.5,-501 622.5,-501"/>
+<polygon fill="url(#l_4)" stroke="black" points="622.5,-501 622.5,-605 819.5,-605 819.5,-501 622.5,-501"/>
 <text text-anchor="middle" x="721" y="-588.2" font-family="Times,serif" font-size="16.00">3.43322790286038071e&#45;06</text>
 <polyline fill="none" stroke="black" points="622.5,-579 819.5,-579 "/>
 <text text-anchor="middle" x="721" y="-562.2" font-family="Times,serif" font-size="16.00">44.79998779296875</text>
@@ -102,7 +102,7 @@
 <stop offset="1" style="stop-color:green;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_5)" points="238,-415 238,-519 330,-519 330,-415 238,-415"/>
+<polygon fill="url(#l_5)" stroke="black" points="238,-415 238,-519 330,-519 330,-415 238,-415"/>
 <text text-anchor="middle" x="284" y="-502.2" font-family="Times,serif" font-size="16.00">0xf7fc4380</text>
 <polyline fill="none" stroke="black" points="238,-493 330,-493 "/>
 <text text-anchor="middle" x="284" y="-476.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -124,7 +124,7 @@
 <stop offset="1" style="stop-color:red;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_6)" points="257,-76 257,-180 311,-180 311,-76 257,-76"/>
+<polygon fill="url(#l_6)" stroke="black" points="257,-76 257,-180 311,-180 311,-76 257,-76"/>
 <text text-anchor="middle" x="284" y="-163.2" font-family="Times,serif" font-size="16.00">(nil)</text>
 <polyline fill="none" stroke="black" points="257,-154 311,-154 "/>
 <text text-anchor="middle" x="284" y="-137.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -151,7 +151,7 @@
 <stop offset="1" style="stop-color:green;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_7)" points="366,-389 366,-493 458,-493 458,-389 366,-389"/>
+<polygon fill="url(#l_7)" stroke="black" points="366,-389 366,-493 458,-493 458,-389 366,-389"/>
 <text text-anchor="middle" x="412" y="-476.2" font-family="Times,serif" font-size="16.00">0xf7fc4380</text>
 <polyline fill="none" stroke="black" points="366,-467 458,-467 "/>
 <text text-anchor="middle" x="412" y="-450.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -173,7 +173,7 @@
 <stop offset="1" style="stop-color:green;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_8)" points="385,-238 385,-342 439,-342 439,-238 385,-238"/>
+<polygon fill="url(#l_8)" stroke="black" points="385,-238 385,-342 439,-342 439,-238 385,-238"/>
 <text text-anchor="middle" x="412" y="-325.2" font-family="Times,serif" font-size="16.00">(nil)</text>
 <polyline fill="none" stroke="black" points="385,-316 439,-316 "/>
 <text text-anchor="middle" x="412" y="-299.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -200,7 +200,7 @@
 <stop offset="1" style="stop-color:green;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_9)" points="494,-369 494,-473 586,-473 586,-369 494,-369"/>
+<polygon fill="url(#l_9)" stroke="black" points="494,-369 494,-473 586,-473 586,-369 494,-369"/>
 <text text-anchor="middle" x="540" y="-456.2" font-family="Times,serif" font-size="16.00">0xf7fc4380</text>
 <polyline fill="none" stroke="black" points="494,-447 586,-447 "/>
 <text text-anchor="middle" x="540" y="-430.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -222,7 +222,7 @@
 <stop offset="1" style="stop-color:orange;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_10)" points="513,-246 513,-350 567,-350 567,-246 513,-246"/>
+<polygon fill="url(#l_10)" stroke="black" points="513,-246 513,-350 567,-350 567,-246 513,-246"/>
 <text text-anchor="middle" x="540" y="-333.2" font-family="Times,serif" font-size="16.00">(nil)</text>
 <polyline fill="none" stroke="black" points="513,-324 567,-324 "/>
 <text text-anchor="middle" x="540" y="-307.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -254,7 +254,7 @@
 <stop offset="1" style="stop-color:cyan;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_11)" points="694,-317 694,-421 748,-421 748,-317 694,-317"/>
+<polygon fill="url(#l_11)" stroke="black" points="694,-317 694,-421 748,-421 748,-317 694,-317"/>
 <text text-anchor="middle" x="721" y="-404.2" font-family="Times,serif" font-size="16.00">(nil)</text>
 <polyline fill="none" stroke="black" points="694,-395 748,-395 "/>
 <text text-anchor="middle" x="721" y="-378.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -276,7 +276,7 @@
 <stop offset="1" style="stop-color:green;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_12)" points="513,-123 513,-227 567,-227 567,-123 513,-123"/>
+<polygon fill="url(#l_12)" stroke="black" points="513,-123 513,-227 567,-227 567,-123 513,-123"/>
 <text text-anchor="middle" x="540" y="-210.2" font-family="Times,serif" font-size="16.00">(nil)</text>
 <polyline fill="none" stroke="black" points="513,-201 567,-201 "/>
 <text text-anchor="middle" x="540" y="-184.2" font-family="Times,serif" font-size="16.00"> </text>
@@ -298,7 +298,7 @@
 <stop offset="1" style="stop-color:magenta;stop-opacity:1.;"/>
 </linearGradient>
 </defs>
-<polygon fill="url(#l_13)" points="495,-0 495,-104 585,-104 585,-0 495,-0"/>
+<polygon fill="url(#l_13)" stroke="black" points="495,-0 495,-104 585,-104 585,-0 495,-0"/>
 <text text-anchor="middle" x="540" y="-87.2" font-family="Times,serif" font-size="16.00">0xf7fc43e0</text>
 <polyline fill="none" stroke="black" points="495,-78 585,-78 "/>
 <text text-anchor="middle" x="540" y="-61.2" font-family="Times,serif" font-size="16.00"> </text>
