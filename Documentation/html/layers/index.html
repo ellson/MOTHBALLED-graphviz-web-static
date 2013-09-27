@@ -1,0 +1,164 @@
+<HTML>
+<HEAD>
+<TITLE> Graphviz layered drawing </TITLE>
+</HEAD>
+
+<H3> Graphviz layered drawing </H3>
+
+If the <tt>layers</tt> graph attribute is set, the graph is
+printed in a sequence of colored layers, or overlays. 
+(This coloring overrides any other settings.)   <tt>layers</tt>
+defines a list of layer names, each separated by a sequence of separator
+characters. The tokens can be any identifier or
+natural number, except the reserved word <tt>all</tt>.
+By default, the separator characters are colon, space and tab, though
+this can be overridden using the <tt>layersep</tt> graph attribute.
+<p>
+The <tt>layer</tt> attribute of a node or edge enables its
+appearance in given layers.  Its value specifies a layer,
+or a layer range, written as two layer names
+separated by a sequence of separator characters.
+The keyword <tt>all</tt> means all possible layers.
+If <tt>all</tt> is used as part of a range, the range denotes all
+layers bounded on one side by the other token. Thus, the label <tt>pvt:all</tt>
+of the edge <tt>node2 -> node3</tt> in the example below corresponds to
+the layers <tt>pvt, test, new, and ofc</tt>.
+<p>
+As an example, the graph:
+
+<pre>
+digraph G {
+	layers="local:pvt:test:new:ofc";
+
+	node1  [layer="pvt"];
+	node2  [layer="all"];
+	node3  [layer="pvt:ofc"];		/* pvt, test, new, and ofc */
+	node2 -> node3  [layer="pvt:all"];	/* same as pvt:ofc */
+	node2 -> node4 [layer=3];		/* same as test */
+}
+</pre>
+produces the 5 layers shown below:
+<table border=1 bgcolor=white>
+<tr>
+  <td>
+  <table>
+  <tr>
+    <td>
+    <img src=lay1.gif>
+    </td>
+  </tr>
+  <caption align=bottom>Layer 1</caption>
+  </table>
+  </td>
+  <td>
+  <table>
+  <tr>
+    <td>
+    <img src=lay2.gif>
+    </td>
+  </tr>
+  <caption align=bottom>Layer 2</caption>
+  </table>
+  </td>
+  <td>
+  <table>
+  <tr>
+    <td>
+    <img src=lay3.gif>
+    </td>
+  </tr>
+  <caption align=bottom>Layer 3</caption>
+  </table>
+  </td>
+</tr>
+</table>
+<ilayer left=120>
+<table border=1 bgcolor=white>
+<tr>
+  <td>
+  <table>
+  <tr>
+    <td>
+    <img src=lay4.gif>
+    </td>
+  </tr>
+  <caption align=bottom>Layer 4</caption>
+  </table>
+  </td>
+  <td>
+  <table>
+  <tr>
+    <td>
+    <img src=lay5.gif>
+    </td>
+  </tr>
+  <caption align=bottom>Layer 5</caption>
+  </table>
+  </td>
+</tr>
+</table>
+</ilayer>
+<p>
+In a layered graph, if a given node (or edge) does not have
+a layer assignment, but incident edges (nodes, resp.) do,
+its layer specification is inferred from these.  For example,
+in the examples above, node4 only appears on layer 3, because
+a layer assignment was given for its connecting edge.
+Note, however, that if a node or edge without a layer attribute
+is incident with an edge or node without a layer attribute (or such
+a node has no edges), then the node or edge appears on all layers.
+<p>
+To change the default so that nodes and edges with no
+layer attribute appear on all layers, insert
+<pre>
+	node [layer=all];
+	edge [layer=all];
+</pre>
+at the beginning of the graph file.
+<p>
+At present, the layers feature is only available in PostScript output.
+<p>
+There is currently no way to specify a set of layers that are
+not a continuous range, sorry, but feel free to fix it in the source.
+<p>
+The color sequence for layers is set in the array layercolorseq
+(in Postscript at least).  The first index is 1 and each element
+is a three-element color coordinate array.  Custom layer colors can
+be created by setting the value of this array.
+<p>
+
+<h4>TODO</h4>
+
+<ul>
+<li> simply change default colors per layer, thus allowing
+		user override on individual nodes or edges when desired.
+<li> forcing nodes/edges in a given subgraph to take certain attributes.
+		Might require a hook in the libgraph parser.
+		It would be pretty easy to support the semantics:
+			for every node/edge in this subgraph, assign it the
+				default attributes that differ from the defaults
+				of the parent of this graph.
+
+		What you need to avoid is the problem exposed in the
+		following example:
+<pre>
+
+			subgraph sub0 {
+				node [color=red];
+				a; b; c;
+			}
+			subgraph sub1 {
+				node [shape=diamond];
+				a; b; c;
+			}
+</pre>
+
+			We don't want to reset a,b,c to color=black just because
+			that is default in sub1.
+
+Solution: none, hope for a fix in libgraph.
+</ul>
+<P>
+<center>
+</BODY>
+</HTML>
