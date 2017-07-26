@@ -7,7 +7,7 @@ skip_if_unavailable=1
 
 [graphviz-stable-source]
 name=Graphviz - Fedora $releasever - Source
-baseurl=http://www.graphviz.org/pub/graphviz/stable/SRPMS/
+baseurl=http://www.graphviz.org/pub/graphviz/stable/fc$releasever/src/
 enabled=0
 gpgcheck=0
 skip_if_unavailable=1
@@ -28,7 +28,7 @@ skip_if_unavailable=1
 
 [graphviz-snapshot-source]
 name=Graphviz - Fedora $releasever - Source
-baseurl=http://www.graphviz.org/pub/graphviz/development/SRPMS/
+baseurl=http://www.graphviz.org/pub/graphviz/development/fc$releasever/src/
 enabled=0
 gpgcheck=0
 skip_if_unavailable=1
